@@ -82,6 +82,7 @@
 //     </div>
 //   );
 // }
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
@@ -99,6 +100,7 @@ export function Register() {
       await signUp(email, password);
       navigate("/login");
     } catch (err) {
+      console.log(err);
       setError("Error creating account");
     }
   };

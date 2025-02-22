@@ -99,7 +99,7 @@ interface User {
 }
 
 export function Home() {
-  const { user, signOut } = useAuthStore();
+  const { user, signOut, credits } = useAuthStore();
 
   const features = [
     {
@@ -140,7 +140,9 @@ export function Home() {
                 <p className="text-sm font-medium text-gray-500">
                   Scans Available
                 </p>
-                <p className="mt-2 text-3xl font-bold text-indigo-600">20</p>
+                <p className="mt-2 text-3xl font-bold text-indigo-600">
+                  {credits}
+                </p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow">
                 <p className="text-sm font-medium text-gray-500">

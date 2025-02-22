@@ -100,6 +100,7 @@ export function Login() {
       await signIn(email, password);
       setTimeout(() => navigate("/dashboard"), 500); // Ensures Zustand updates before redirect
     } catch (err) {
+      console.log(err);
       setError("Invalid email or password");
     }
   };

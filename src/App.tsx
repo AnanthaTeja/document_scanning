@@ -1,14 +1,19 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
-import { Dashboard } from "./pages/Dashboard";
-import { ProtectedRoute } from "./components/ProtectedRoute";
-import { Admin } from "./pages/Admin";
+import { useAuthStore } from "./store/authStore";
+import { AdminDashboard } from "./pages/AdminDashboard";
+import { UserDashboard } from "./pages/UserDashboard";
 
 function App() {
+  const { user, role } = useAuthStore();
   return (
     <Router>
       <Routes>
@@ -17,21 +22,34 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route
-            path="dashboard"
+            path="/dashboard"
             element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
+              user ? (
+                role === "admin" ? (
+                  <AdminDashboard />
+                ) : (
+                  <UserDashboard />
+                )
+              ) : (
+                <Navigate to="/login" />
+              )
             }
           />
+
+          {/* Redirect unknown paths */}
           <Route
+            path="*"
+            element={<Navigate to={user ? "/dashboard" : "/login"} />}
+          />
+
+          {/* <Route
             path="admin"
             element={
               <ProtectedRoute>
                 <Admin />
               </ProtectedRoute>
             }
-          />
+          /> */}
         </Route>
       </Routes>
     </Router>
