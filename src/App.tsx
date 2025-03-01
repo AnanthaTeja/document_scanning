@@ -11,6 +11,9 @@ import { Register } from "./pages/Register";
 import { useAuthStore } from "./store/authStore";
 import { AdminDashboard } from "./pages/AdminDashboard";
 import { UserDashboard } from "./pages/UserDashboard";
+import { UploadDocument } from "./components/UploadDocument";
+import { ViewDocument } from "./pages/ViewDocument";
+
 
 function App() {
   const { user, role } = useAuthStore();
@@ -35,21 +38,13 @@ function App() {
               )
             }
           />
-
+          <Route path="scan" element={<UploadDocument />} />
+          <Route path="/view/:id" element={<ViewDocument />} />
           {/* Redirect unknown paths */}
           <Route
             path="*"
             element={<Navigate to={user ? "/dashboard" : "/login"} />}
           />
-
-          {/* <Route
-            path="admin"
-            element={
-              <ProtectedRoute>
-                <Admin />
-              </ProtectedRoute>
-            }
-          /> */}
         </Route>
       </Routes>
     </Router>
