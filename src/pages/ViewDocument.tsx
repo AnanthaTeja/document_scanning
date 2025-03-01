@@ -18,7 +18,7 @@ export function ViewDocument() {
       if (error) {
         setContent("Error loading document.");
       } else {
-        setContent(data.content);
+        setContent(data.content);v
       }
     }
 
