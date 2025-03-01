@@ -177,7 +177,8 @@ export function UploadDocument() {
         if (newDocId) {
           // Call Django similarity endpoint (credits deducted here)
           const similarityResponse = await fetch(
-            "http://localhost:8000/api/similarity/",
+            // "http://localhost:8000/api/similarity/",
+            "https://tack.pythonanywhere.com/api/similarity/",
             {
               method: "POST",
               headers: {

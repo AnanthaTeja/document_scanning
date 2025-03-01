@@ -184,7 +184,8 @@ export function AdminDashboard() {
       if (!session) throw new Error("No active session");
 
       const response = await fetch(
-        `http://localhost:8000/api/credit-requests/${requestId}/`,
+        // `http://localhost:8000/api/credit-requests/${requestId}/`,
+        `https://tack.pythonanywhere.com/api/credit-requests/${requestId}/`,
         {
           method: "POST",
           headers: {
